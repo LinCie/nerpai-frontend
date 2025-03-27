@@ -1,19 +1,20 @@
-import type { Metadata } from "next";
-import { Roboto } from "next/font/google";
-import { ThemeProvider } from "@/components/theme-provider";
-import "./globals.css";
+import type { Metadata } from "next"
+import { Roboto } from "next/font/google"
+import { ThemeProvider } from "@/components/theme-provider"
+import { Toaster } from "@/components/ui/sonner"
+import "./globals.css"
 
-const roboto = Roboto({ subsets: ["latin"] });
+const roboto = Roboto({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
   title: "Nerpai",
   description: "ERP Apik",
-};
+}
 
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: React.ReactNode
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
@@ -25,8 +26,9 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           {children}
+          <Toaster />
         </ThemeProvider>
       </body>
     </html>
-  );
+  )
 }
