@@ -43,10 +43,12 @@ export default function Forgot() {
 
     toast.promise(promise, {
       loading: "Processing your request...",
-      success: "A recovery link has been sent to your email",
+      success: () => {
+        redirect("/signin")
+        return "A recovery link has been sent to your email"
+      },
       error: "There is an error while sending your recovery link",
     })
-    redirect("/signin")
   }
 
   return (
