@@ -100,7 +100,7 @@ export default function Signin() {
               </TextLink>
             </div>
             <div className="flex items-center justify-center">
-              <TextLink href="/forgot" className="text-sm">
+              <TextLink href="/recovery" className="text-sm">
                 Forgot your password?
               </TextLink>
             </div>
