@@ -25,10 +25,22 @@ import { PasswordInput } from "@/components/ui/password-input"
 import { TextLink } from "@/components/ui/text-link"
 import { register } from "@/api/services/auth"
 
-const formSchema = z.object({
-  email: z.string().min(2).max(50).email(),
-  password: z.string().min(8),
-})
+const formSchema = z
+  .object({
+    email: z.string().email("Must be a valid email"),
+    password: z
+      .string()
+      .min(8, "Password must be at least 8 characters")
+      .regex(
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/,
+        "Password must contain at least one uppercase letter, one lowercase letter, and one number.",
+      ),
+    confirmPassword: z.string(),
+  })
+  .refine((data) => data.password === data.confirmPassword, {
+    message: "Password confirmation must match given password",
+    path: ["confirmPassword"],
+  })
 
 export default function Signup() {
   const form = useForm<z.infer<typeof formSchema>>({
@@ -36,6 +48,7 @@ export default function Signup() {
     defaultValues: {
       email: "",
       password: "",
+      confirmPassword: "",
     },
   })
 
@@ -91,6 +104,24 @@ export default function Signup() {
                     <PasswordInput {...field} />
                   </FormControl>
                   <FormDescription>This is your password</FormDescription>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            {/* Confirm Password */}
+            <FormField
+              control={form.control}
+              name="confirmPassword"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Confirm Password</FormLabel>
+                  <FormControl>
+                    <PasswordInput {...field} />
+                  </FormControl>
+                  <FormDescription>
+                    This is your password confirmation
+                  </FormDescription>
                   <FormMessage />
                 </FormItem>
               )}
