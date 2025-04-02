@@ -1,4 +1,3 @@
-import ky from "ky"
 import { api } from "../api"
 
 interface IRegisterBody {
@@ -7,16 +6,11 @@ interface IRegisterBody {
 }
 
 async function register(body: IRegisterBody) {
-  await ky.get("http://localhost:8000/sanctum/csrf-cookie", {
-    credentials: "include",
-  })
-
-  const response = await api.post("register", {
+  const response = await api.post("auth/signup", {
     headers: {
       "content-type": "application/json",
     },
     json: body,
-    credentials: "include",
   })
 
   if (response.ok) {
