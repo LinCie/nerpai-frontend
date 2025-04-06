@@ -9,7 +9,7 @@ function Header() {
   const { setTheme, theme } = useTheme()
 
   return (
-    <header className="border-accent bg-background sticky flex items-center justify-between border-b px-4 py-3">
+    <header className="border-sidebar-accent bg-sidebar sticky flex items-center justify-between border-b px-4 py-3">
       <h1 className="text-foreground text-lg font-semibold">Game Bodo</h1>
 
       <div className="flex items-center gap-4">
@@ -19,7 +19,7 @@ function Header() {
           onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
         >
           {theme === "dark" ? (
-            <Sun className="text-foreground h-5 w-5" />
+            <Sun className="h-5 w-5 text-yellow-300" />
           ) : (
             <Moon className="text-foreground h-5 w-5" />
           )}
