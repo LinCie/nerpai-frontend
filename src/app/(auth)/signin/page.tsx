@@ -23,6 +23,7 @@ import {
 import { Input } from "@/components/ui/input"
 import { PasswordInput } from "@/components/ui/password-input"
 import { TextLink } from "@/components/ui/text-link"
+import { signIn } from "@/api/services/auth"
 
 const formSchema = z.object({
   email: z.string().min(2).max(50).email(),
@@ -38,8 +39,9 @@ export default function Signin() {
     },
   })
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values)
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    const response = await signIn(values)
+    console.log(response)
   }
 
   return (

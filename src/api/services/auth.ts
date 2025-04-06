@@ -13,11 +13,31 @@ async function register(body: IRegisterBody) {
     json: body,
   })
 
-  if (response.ok) {
-    return response.json()
+  if (!response.ok) {
+    throw new Error(response.statusText)
   }
 
-  throw new Error(response.statusText)
+  return response
 }
 
-export { register }
+interface ISignInBody {
+  email: string
+  password: string
+}
+
+async function signIn(body: ISignInBody) {
+  const response = await api.post("auth/signin", {
+    headers: {
+      "content-type": "application/json",
+    },
+    json: body,
+  })
+
+  if (!response.ok) {
+    throw new Error(response.statusText)
+  }
+
+  return response
+}
+
+export { register, signIn }
