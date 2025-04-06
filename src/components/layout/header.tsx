@@ -15,11 +15,13 @@ function Header() {
   }, [])
 
   return (
-    <header className="border-sidebar-accent bg-sidebar sticky flex items-center justify-between border-b px-4 py-3">
+    <header className="border-sidebar-accent bg-sidebar sticky flex items-center justify-between gap-2 border-b px-4 py-3">
       <Button variant="ghost" size="icon">
         <Menu className="size-5" />
       </Button>
       <h1 className="text-xl font-semibold">Game Bodo</h1>
+
+      <div className="flex-1" />
 
       <div className="flex items-center gap-4">
         {mounted && (
