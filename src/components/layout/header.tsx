@@ -1,10 +1,10 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { Moon, Sun, Menu } from "lucide-react"
+import { Moon, Sun } from "lucide-react"
 import { useTheme } from "next-themes"
 import { Button } from "@/components/ui/button"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { SidebarTrigger } from "../ui/sidebar"
 
 function Header() {
   const { setTheme, theme } = useTheme()
@@ -15,10 +15,8 @@ function Header() {
   }, [])
 
   return (
-    <header className="border-sidebar-accent bg-sidebar sticky flex items-center justify-between gap-2 border-b px-4 py-3">
-      <Button variant="ghost" size="icon">
-        <Menu className="size-5" />
-      </Button>
+    <header className="border-sidebar-accent bg-sidebar sticky flex items-center justify-between gap-2 border-b px-5 py-3">
+      <SidebarTrigger />
       <h1 className="text-xl font-semibold">Game Bodo</h1>
 
       <div className="flex-1" />
@@ -37,11 +35,6 @@ function Header() {
             )}
           </Button>
         )}
-
-        <Avatar>
-          <AvatarImage src="/avatar.png" alt="@user" />
-          <AvatarFallback>GB</AvatarFallback>
-        </Avatar>
       </div>
     </header>
   )
