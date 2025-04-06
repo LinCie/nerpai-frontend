@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { Moon, Sun } from "lucide-react"
+import { Moon, Sun, Menu } from "lucide-react"
 import { useTheme } from "next-themes"
 import { Button } from "@/components/ui/button"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
@@ -16,7 +16,10 @@ function Header() {
 
   return (
     <header className="border-sidebar-accent bg-sidebar sticky flex items-center justify-between border-b px-4 py-3">
-      <h1 className="text-foreground text-lg font-semibold">Game Bodo</h1>
+      <Button variant="ghost" size="icon">
+        <Menu className="size-5" />
+      </Button>
+      <h1 className="text-xl font-semibold">Game Bodo</h1>
 
       <div className="flex items-center gap-4">
         {mounted && (
@@ -26,9 +29,9 @@ function Header() {
             onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
           >
             {theme === "dark" ? (
-              <Sun className="h-5 w-5 text-yellow-300" />
+              <Sun className="size-5 text-yellow-300" />
             ) : (
-              <Moon className="text-foreground h-5 w-5" />
+              <Moon className="size-5" />
             )}
           </Button>
         )}
