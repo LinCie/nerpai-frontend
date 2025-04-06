@@ -1,5 +1,6 @@
 "use client"
 
+import { redirect } from "next/navigation"
 import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
@@ -41,7 +42,9 @@ export default function Signin() {
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     const response = await signIn(values)
-    console.log(response)
+    if (response.ok) {
+      redirect("/dashboard")
+    }
   }
 
   return (
