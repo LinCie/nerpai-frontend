@@ -1,3 +1,5 @@
+"use client"
+
 import Link from "next/link"
 import {
   Rocket,
@@ -31,6 +33,19 @@ import {
 } from "@/components/ui/sidebar"
 import { Separator } from "@/components/ui/separator"
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar"
+import { signOut as signOutService } from "@/api/services/auth"
+import { redirect } from "next/navigation"
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "../ui/alert-dialog"
 
 interface INavItem {
   title: string
@@ -85,6 +100,11 @@ const items: IMainNav[] = [
 ]
 
 function AppSidebar() {
+  async function signOut() {
+    await signOutService()
+    redirect("/signin")
+  }
+
   return (
     <Sidebar>
       <SidebarHeader>
@@ -144,12 +164,35 @@ function AppSidebar() {
               </Collapsible>
             ))}
             <SidebarMenuItem>
-              <SidebarMenuButton tooltip="Exit" asChild>
-                <Link href="/dashboard">
-                  <ArrowLeft />
-                  <span className="font-semibold">Exit World</span>
-                </Link>
-              </SidebarMenuButton>
+              <AlertDialog>
+                <SidebarMenuButton
+                  tooltip="Exit"
+                  asChild
+                  className="cursor-pointer"
+                >
+                  <AlertDialogTrigger>
+                    <ArrowLeft />
+                    <span className="font-semibold">Exit World</span>
+                  </AlertDialogTrigger>
+                </SidebarMenuButton>
+                <AlertDialogContent>
+                  <AlertDialogHeader>
+                    <AlertDialogTitle>
+                      Are you sure you want to exit world?
+                    </AlertDialogTitle>
+                    <AlertDialogDescription>
+                      This action will sign you out from current session. You
+                      will have to sign in again.
+                    </AlertDialogDescription>
+                  </AlertDialogHeader>
+                  <AlertDialogFooter>
+                    <AlertDialogCancel>Cancel</AlertDialogCancel>
+                    <AlertDialogAction onClick={signOut}>
+                      Exit world
+                    </AlertDialogAction>
+                  </AlertDialogFooter>
+                </AlertDialogContent>
+              </AlertDialog>
             </SidebarMenuItem>
           </SidebarMenu>
         </SidebarGroup>

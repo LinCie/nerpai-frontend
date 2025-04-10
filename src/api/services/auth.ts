@@ -40,4 +40,13 @@ async function signIn(body: ISignInBody) {
   return response
 }
 
-export { register, signIn }
+async function signOut() {
+  const response = await api.delete("auth/signout")
+  if (!response.ok) {
+    throw new Error(response.statusText)
+  }
+
+  return response
+}
+
+export { register, signIn, signOut }
