@@ -24,6 +24,9 @@ export default async function DashboardLayout({
       <div className="w-full">
         <Header />
         <main className="p-4 md:p-6 lg:p-8">{children}</main>
+        <footer className="text-muted-foreground pb-10 text-center text-xs">
+          © 2025 Nerpai™. All Rights Reserved
+        </footer>
       </div>
     </SidebarProvider>
   )

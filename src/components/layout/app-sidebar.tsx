@@ -79,7 +79,7 @@ const items: IMainNav[] = [
     items: [
       { title: "Players", url: "#" },
       { title: "Users", url: "#" },
-      { title: "People", url: "#" },
+      { title: "People", url: "/dashboard/people" },
       { title: "Groups", url: "#" },
     ],
   },
